@@ -36,5 +36,4 @@ public class ParkingSpot {
     public boolean isOccupied() { return occupied; }
 
     public void setOccupied(boolean occupied) { this.occupied = occupied; }
-
 }
