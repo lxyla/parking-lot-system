@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ParkingpSotRepository extends JpaRepository<ParkingSpot, Long> {
+public interface ParkingpSpotRepository extends JpaRepository<ParkingSpot, Long> {
     List<ParkingSpot> findByOccupied();
     List<ParkingSpot> findByOccupiedFalseAndSpotTypeIn(List<SpotType> spotTypes);
 }

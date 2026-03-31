@@ -1,6 +1,6 @@
 package com.example.parkinglot.services;
 
-import com.example.parkinglot.repository.ParkingpSotRepository;
+import com.example.parkinglot.repository.ParkingpSpotRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
 public class ParkingService {
 
     @Autowired // enables automatic dependency injection
-    private ParkingpSotRepository parkingpSotRepository;
+    private ParkingpSpotRepository parkingpSpotRepository;
 }
