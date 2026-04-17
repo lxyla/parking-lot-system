@@ -11,8 +11,6 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "parking_spot_id")
     private String licensePlate;
 
     @Enumerated(EnumType.STRING)
@@ -21,12 +19,12 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "parking_spot_id")
     private ParkingSpot parkingSpot;
 
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
-
-
 
     public Ticket() {}
 

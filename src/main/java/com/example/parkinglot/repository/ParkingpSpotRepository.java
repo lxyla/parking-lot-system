@@ -5,8 +5,9 @@ import com.example.parkinglot.model.SpotType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ParkingpSpotRepository extends JpaRepository<ParkingSpot, Long> {
-    List<ParkingSpot> findByOccupied();
-    List<ParkingSpot> findByOccupiedFalseAndSpotTypeIn(List<SpotType> spotTypes);
+    List<ParkingSpot> findByOccupiedFalse();
+    Optional<ParkingSpot> findByOccupiedFalseAndSpotTypeIn(List<SpotType> spotTypes);
 }
