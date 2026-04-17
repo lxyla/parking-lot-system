@@ -12,19 +12,19 @@ public class Ticket {
     private long id;
 
     private String licensePlate;
-;
+
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "parking_spot_id")
     private ParkingSpot parkingSpot;
 
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
-
-
 
     public Ticket() {}
 
