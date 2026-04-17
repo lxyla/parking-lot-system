@@ -1,7 +1,7 @@
 package com.example.parkinglot.model;
 
 public enum VehicleType {
-    MOTORCYLE,
+    MOTORCYCLE,
     CAR,
     BUS
 }

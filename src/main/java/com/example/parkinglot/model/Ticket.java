@@ -11,8 +11,10 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "parking_spot_id")
     private String licensePlate;
-;
+
     @Enumerated(EnumType.STRING)
     private VehicleType vehicleType;
 

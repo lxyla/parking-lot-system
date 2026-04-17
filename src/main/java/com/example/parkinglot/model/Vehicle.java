@@ -15,7 +15,7 @@ public class Vehicle {
     public int spotsNeeded(){
         return switch(vehicleType){
             case CAR -> 1;
-            case MOTORCYLE -> 1;
+            case MOTORCYCLE -> 1;
             case BUS -> 2;
         };
     }
