@@ -16,7 +16,7 @@ public class Vehicle {
         return switch(vehicleType){
             case CAR -> 1;
             case MOTORCYCLE -> 1;
-            case BUS -> 2;
+            case BUS -> 5;
         };
     }
 }

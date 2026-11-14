@@ -25,7 +25,11 @@ public class DataLoader implements CommandLineRunner {
                     new ParkingSpot(1, 1, 2, SpotType.COMPACT,   false),
                     new ParkingSpot(1, 2, 1, SpotType.STANDARD,  false),  // car spot
                     new ParkingSpot(1, 2, 2, SpotType.STANDARD,  false),
-                    new ParkingSpot(1, 3, 1, SpotType.LARGE,     false)   // bus spot
+                    new ParkingSpot(1, 3, 1, SpotType.LARGE,     false),  // bus spot
+                    new ParkingSpot(1, 3, 2, SpotType.LARGE, false),
+                    new ParkingSpot(1, 3, 3, SpotType.LARGE, false),
+                    new ParkingSpot(1, 3, 4, SpotType.LARGE, false),
+                    new ParkingSpot(1, 3, 5, SpotType.LARGE, false)
             ));
         }
     }
