@@ -6,10 +6,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import com.example.parkinglot.model.SpotType;
 import com.example.parkinglot.model.VehicleType;
+import com.example.parkinglot.exception.IllegalParkingException;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-
 import java.util.List;
 
 @Service
@@ -73,6 +72,21 @@ public class ParkingService {
         }
 
         return List.of();
+    }
+
+    public List<ParkingSpot> parkVehicle(VehicleType vehicleType) {
+        List<ParkingSpot> spots = findAvailableSpots(vehicleType);
+
+        if (spots.isEmpty()) {
+            throw new IllegalParkingException(
+                    "No compatible parking spots available for " + vehicleType);
+        }
+
+        for (ParkingSpot spot : spots) {
+            spot.setOccupied(true);
+        }
+
+        return spots;
     }
 
 }
