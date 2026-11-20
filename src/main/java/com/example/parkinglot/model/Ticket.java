@@ -3,6 +3,8 @@ package com.example.parkinglot.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Ticket {
@@ -19,20 +21,24 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "parking_spot_id")
-    private ParkingSpot parkingSpot;
-
+    @ManyToMany
+    @JoinTable(
+            name = "ticket_parking_spot",
+            joinColumns = @JoinColumn(name = "ticket_id"),
+            inverseJoinColumns = @JoinColumn(name = "parking_spot_id")
+    )
+    private List<ParkingSpot> parkingSpots = new ArrayList<>();
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
 
     public Ticket() {}
 
-    public Ticket(String licensePlate, VehicleType vehicleType, TicketStatus status, ParkingSpot parkingSpot){
+    public Ticket(String licensePlate, VehicleType vehicleType,
+                  List<ParkingSpot> parkingSpots) {
         this.licensePlate = licensePlate;
         this.vehicleType = vehicleType;
         this.status = TicketStatus.ACTIVE;
-        this.parkingSpot = parkingSpot;
+        this.parkingSpots = new ArrayList<>(parkingSpots);
         this.entryTime = LocalDateTime.now();
     }
 
@@ -41,7 +47,9 @@ public class Ticket {
     public VehicleType getVehicleType() { return vehicleType; }
     public TicketStatus getStatus() { return status; }
     public LocalDateTime getEntryTime() { return entryTime; }
-    public ParkingSpot getParkingSpot() { return parkingSpot; }
+    public List<ParkingSpot> getParkingSpots() {
+        return parkingSpots;
+    }
     public LocalDateTime getExitTime() { return exitTime; }
 
     public void setEntryTime(LocalDateTime entryTime) {
