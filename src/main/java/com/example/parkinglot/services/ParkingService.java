@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.example.parkinglot.model.SpotType;
 import com.example.parkinglot.model.VehicleType;
 import com.example.parkinglot.exception.IllegalParkingException;
+import com.example.parkinglot.model.Ticket;
+import com.example.parkinglot.repository.TicketRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -16,10 +18,12 @@ import java.util.List;
 public class ParkingService {
 
     private final ParkingSpotRepository parkingSpotRepository;
+    private final TicketRepository ticketRepository;
     private static final int BUS_SPOTS_NEEDED = 5;
 
-    public ParkingService(ParkingSpotRepository parkingSpotRepository) {
+    public ParkingService(ParkingSpotRepository parkingSpotRepository, TicketRepository ticketRepository) {
         this.parkingSpotRepository = parkingSpotRepository;
+        this.ticketRepository = ticketRepository;
     }
 
     public List<ParkingSpot> getAvailableParkingSpots() {
@@ -74,7 +78,7 @@ public class ParkingService {
         return List.of();
     }
 
-    public List<ParkingSpot> parkVehicle(VehicleType vehicleType) {
+    public Ticket parkVehicle(String licensePlate, VehicleType vehicleType) {
         List<ParkingSpot> spots = findAvailableSpots(vehicleType);
 
         if (spots.isEmpty()) {
@@ -86,7 +90,9 @@ public class ParkingService {
             spot.setOccupied(true);
         }
 
-        return spots;
+        Ticket ticket = new Ticket(licensePlate, vehicleType, spots);
+        return ticketRepository.save(ticket);
     }
+
 
 }
